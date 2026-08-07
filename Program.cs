@@ -3,8 +3,8 @@ using LibraryApi.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<AppDbContext>(optins=>
-optins.UseSqlite("Data Source=LibraryApi.db"));
+builder.Services.AddDbContext<AppDbContext>(options=>
+options.UseSqlite("Data Source=LibraryApi.db"));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
