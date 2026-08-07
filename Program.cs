@@ -96,7 +96,7 @@ app.MapPost("/books" , async (AppDbContext db , Book book) =>
     db.Books.Add(book);
     await db.SaveChangesAsync();
     return Results.Created($"/books/{book.Id}" , book);
-});
+}).RequireAuthorization();
 
 app.MapPut ("/books/{id}" , async (AppDbContext db , int id , Book updatedbook) =>
 {
@@ -109,7 +109,7 @@ app.MapPut ("/books/{id}" , async (AppDbContext db , int id , Book updatedbook) 
 
     await db.SaveChangesAsync();
     return Results.Ok(book);
-});
+}).RequireAuthorization();
 
 app.MapDelete("/books/{id}", async (AppDbContext db, int id) =>
 {
@@ -119,6 +119,6 @@ app.MapDelete("/books/{id}", async (AppDbContext db, int id) =>
     db.Books.Remove(book);
     await db.SaveChangesAsync();
     return Results.NoContent();
-});
+}).RequireAuthorization();
 
 app.Run();
